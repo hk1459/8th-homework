@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -231,9 +232,13 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     //같은거 있는지 없는지 구분기능 추가해야함
                     for(int i = 0; i <url2.size();i++){
-                        if(url2.get(i).getUrl() == url){
-
-
+                        if(url2.get(i).getUrl().equals(url) ){
+                            //리턴과 동시에 script 함수 호출하기
+                            webView.loadUrl("javascript:displayMsg()");
+                            if(myhandler != null) {
+                                myhandler.removeMessages(0);
+                            }
+                            return;
                         }
                     }
                     url2.add(new url(name, url));

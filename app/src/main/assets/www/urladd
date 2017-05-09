@@ -65,7 +65,7 @@
     </TR>
     <TR>
         <TD>url</TD>
-        <TD><INPUT TYPE="text" id="url"></TD>
+        <TD><INPUT TYPE="text" id="url" value="http://"></TD>
     </TR>
     <TR>
         <TD colspan="2" align="center"><input type="button" value="즐겨찾기추가" onclick="siteAdd()"></TD>
