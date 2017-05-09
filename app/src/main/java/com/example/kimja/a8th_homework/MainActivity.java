@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     ListView listView;
     GridLayout grid;
+    ArrayAdapter adapter;
 
     ArrayList<String> urls = new ArrayList<String>();
     ArrayList<url> url2 = new ArrayList<url>();
@@ -128,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
+                linearLayout.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                linearLayout.setVisibility(View.VISIBLE);
+
             }
 
             @Override
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //리스트뷰
-        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, urls);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, urls);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -171,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
                                 urls.remove(position);
                                 url2.remove(position);
                                 adapter.notifyDataSetChanged();
+
                             }
                         }).setNegativeButton("Cancel",null)
                         .show();
@@ -242,7 +244,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     url2.add(new url(name, url));
-                    urls.add(new String("<" +url2.get(url2.size()-1).name +"> "+ url2.get(url2.size()-1).url));  //추가
+                    urls.add(new String("<" +url2.get(url2.size()-1).name +"> "+ url2.get(url2.size()-1).url));
+                    adapter.notifyDataSetChanged();
+                    //추가
                 }
             });
         }
